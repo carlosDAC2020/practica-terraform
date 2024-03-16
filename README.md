@@ -6,29 +6,29 @@ usando WSL o linux
 ### para terrafor
 - Descargar y añadir la clave GPG de HashiCorp
 ```bash
-    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
 ```
 - Añadir el repositorio de HashiCorp a la lista de fuentes de software
 ```bash
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 ```
 - Actualizar la lista de paquetes e instalar Terraform
 ```bash
-    sudo apt update && sudo apt install terraform
+sudo apt update && sudo apt install terraform
 ```
 - Verificar la instalación de Terraform
 ```bash
-    terraform --version
+terraform --version
 ```
 
 ###  ansible
 - Utiliza el gestor de paquetes apt para instalar Ansible:
 ```bash
-   sudo apt install ansible
+sudo apt install ansible
 ```
 - Verifica la instalación:
 ```bash
-   ansible --version
+ansible --version
 ```
 
 ## Configurar accesos de AWS
@@ -40,7 +40,7 @@ usando WSL o linux
 ## Par de llaves SSH
 - creamos un par de llaves publica y privada para hacer la conexion a la instacia por SSH
 ```bash
-    ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N ""
+ssh-keygen -t rsa -b 2048 -f ~/.ssh/id_rsa -N ""
 ```
 
 ## Declaracion de la infraestructura
@@ -159,28 +159,33 @@ variable "AWS_SECRET_ACCESS_KEY" {
 tenidno la declaracion de la infraestructura lista realizamos los siguientes comandos 
 - ***Inicializar Terraform:*** En el directorio donde tienes tu archivo main.tf, ejecuta el siguiente comando para inicializar Terraform y descargar los plugins necesarios:
 ```bash
-    terraform init
+terraform init
 ```
 - ***Verificar Cambios:*** Antes de aplicar los cambios, es recomendable ver qué cambios se van a realizar en tu infraestructura. Puedes hacerlo ejecutand
 ```bash
-    terraform plan
+terraform plan
 ```
 - ***Aplicar Cambios:*** Si estás satisfecho con los cambios propuestos, puedes aplicarlos ejecutando:
 ```bash
-    terraform apply
+terraform apply
 ```
+![Texto alternativo](/images/terraform_apply.PNG)
+
 podemos verificar en la plataforma de AWS que los recursos creados como la instacia EC2 y su grupo de seguriad estan disponibles.
+
+![Texto alternativo](/images/aws.PNG)
 
 podriamos conectarnos a nuestra instacia por SSH de la siguiente manera:
 ```bash
-    ssh -i ~/.ssh/id_rsa.pub ubuntu@<ip_publica_de_tu_instancia>
+ssh -i ~/.ssh/id_rsa ubuntu@<ip_publica_de_tu_instancia>
 ```
+![Texto alternativo](/images/ssh%20conection.PNG)
 
 ## Configuramos con Ansible
 configuramos un servidor Nginx con PHP usando ansible
 - Entramos la directorio ansible del repo.
 ```bash
-    cd ansible
+cd ansible
 ```
 - En el archivo ***inventory*** ubicamos en el lugar correspondiente la ip publica de la instancia 
 ```txt
@@ -189,6 +194,10 @@ configuramos un servidor Nginx con PHP usando ansible
 ```
 - aplicamos el comando que ejecutara las tareas correpondientes para configurar el server Nginx con PHP en la instacia
 ```bash
-    ansible-playbook -i inventory nginx.yaml
+ansible-playbook -i inventory nginx.yaml
 ```
+![Texto alternativo](/images/ansible.PNG)
+
 Al completarse las tareas ya podriamos ver la pagina de inicio que debe mostra nuestro server en la url ***http://3.81.121.192/test.php*** (cambia la ip del link por la ip publica de la instacnia lanzada)
+
+![Texto alternativo](/images/php_info.PNG)
