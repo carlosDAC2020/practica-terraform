@@ -1,6 +1,10 @@
 # Parcativa Terraform + Ansible 
 Se Terraform para aprovisionar una máquina virtual (Instancia EC2) con Ubuntu 22.04 LTS y Ansible para configurarla como servidor Nginx con PHP.
 
+### integrantes
+- Carlos Daniel Agamez Palomino 
+- Harold Styven Lagares De Voz
+
 ## instalacion 
 usando WSL o linux
 ### para terrafor
