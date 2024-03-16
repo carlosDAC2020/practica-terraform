@@ -191,4 +191,4 @@ configuramos un servidor Nginx con PHP usando ansible
 ```bash
     ansible-playbook -i inventory nginx.yaml
 ```
-Al completarse las tareas ya podriamos ver la pagina de inicio que debe mostra nuestro server en la url ***http://ip publica de la instancia/test.php***
+Al completarse las tareas ya podriamos ver la pagina de inicio que debe mostra nuestro server en la url ***http://3.81.121.192/test.php*** (cambia la ip del link por la ip publica de la instacnia lanzada)
