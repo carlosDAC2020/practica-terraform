@@ -1,0 +1,10 @@
+# Archivos de estado de Terraform
+*.tfstate
+*.tfstate.*
+*.hcl
+
+# Archivos de configuración de proveedores de Terraform
+.terraform/
+
+#otros
+*.txt
