@@ -4,6 +4,7 @@ Se Terraform para aprovisionar una máquina virtual (Instancia EC2) con Ubuntu 2
 ### integrantes
 - Carlos Daniel Agamez Palomino 
 - Harold Styven Lagares De Voz
+- Cristal Sofia Herrera Arrieta
 
 ## instalacion 
 usando WSL o linux
